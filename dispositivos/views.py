@@ -9,20 +9,51 @@ def inicio(request):
     )
 
 def dispositivos_zona(request, zona_id):
-    if zona_id != 3:
-        return HttpResponse(
-            "Zona no encontrada", status=404
-        )
-    return HttpResponse(
-        f"Dispositivos de la zona {zona_id}"
+    tipo = {
+        "nombre": "por nombre",
+        "fecha": "por fecha",
+        "numero": "por numero"
+    }
+    return render(
+        request,
+        "dispositivos/busqueda.html",
+        tipo
     )
 
-def dispositivos_numero(request, numero_id):
-    if numero_id != 1500:
-        return HttpResponse(
-            "DOXEAO POR GIL", status=404
-        )
-    return HttpResponse(
-        f"Dispositivos de tu direccion {numero_id}"
+def busqueda(request):
+    tipo = {
+        "nombre": "por nombre",
+        "fecha": "por fecha",
+        "numero": "por numero"
+    }
+    return render(
+        request,
+        "dispositivos/busqueda.html",
+        tipo
+    )
+    
+
+def inicio(request):
+    contexto = {
+        "sistema": "EcoEnergy",
+        "mensaje": "Monitoreo energético responsable",
+        "asignatura": "Programación Back End",
+    }
+    return render(
+        request,
+        "dispositivos/inicio.html",
+        contexto,
+    )
+
+def catalogo(request):
+    dispositivos = [
+        {"nombre": "Medidor inteligente", "estado": "Activo"},
+        {"nombre": "Sensor de temperatura", "estado": "Activo"},
+        {"nombre": "Climatizador", "estado": "Revisión"},
+    ]
+    return render(
+        request,
+        "dispositivos/catalogo.html",
+        {"dispositivos": dispositivos},
     )
 

@@ -11,9 +11,11 @@ path(
     name="por_zona",
 ),
 path(
-    "numero/<int:numero_id>/dispositivos/",
-    views.dispositivos_numero,
-    name="por_numero",
-)
+    "dispositivos/",
+    views.busqueda,
+    name="busqueda",
+),
+path("dispositivos/catalogo", views.catalogo, name="catalogo")
+
 
 ]
