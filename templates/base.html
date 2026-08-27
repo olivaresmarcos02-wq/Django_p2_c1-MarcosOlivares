@@ -1,16 +1,82 @@
 <!-- templates/base.html -->
+
+{% load django_bootstrap5 %}
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>{% block title %}EcoEnergy{% endblock %}</title>
+
+    {% bootstrap_css %}
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
+
 <body>
-    <nav>
-        <a href="{% url 'dispositivos:inicio' %}">Inicio</a>
-        <a href="{% url 'dispositivos:catalogo' %}">Dispositivos</a>
-        <a href="{% url 'dispositivos:busqueda' %}">Busqueda</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'dispositivos:inicio' %}">
+                EcoEnergy
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarEcoEnergy"
+                aria-controls="navbarEcoEnergy"
+                aria-expanded="false"
+                aria-label="Mostrar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarEcoEnergy">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dispositivos:inicio' %}">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dispositivos:catalogo' %}">
+                            Dispositivos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dispositivos:busqueda' %}">
+                            Búsqueda
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <main>{% block content %}{% endblock %}</main>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% bootstrap_javascript %}
 </body>
 </html>

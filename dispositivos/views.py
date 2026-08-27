@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .services import cargar_dispositivos, cargar_inicio
 
 # Create your views here.
 from django.http import HttpResponse
@@ -34,10 +35,9 @@ def busqueda(request):
     
 
 def inicio(request):
+    inicio = cargar_inicio
     contexto = {
-        "sistema": "EcoEnergy",
-        "mensaje": "Monitoreo energético responsable",
-        "asignatura": "Programación Back End",
+        "info" : inicio,
     }
     return render(
         request,
@@ -45,7 +45,7 @@ def inicio(request):
         contexto,
     )
 
-def catalogo(request):
+def catalogos(request):
     dispositivos = [
         {"nombre": "Medidor inteligente", "estado": "Activo"},
         {"nombre": "Sensor de temperatura", "estado": "Activo"},
@@ -56,4 +56,24 @@ def catalogo(request):
         "dispositivos/catalogo.html",
         {"dispositivos": dispositivos},
     )
+
+def catalogo(request):
+
+    dispositivos = cargar_dispositivos()
+
+    activos = sum(
+        1 for item in dispositivos
+        if item["estado"] == "Activo"
+    )
+
+    contexto = {
+        "dispositivos": dispositivos,
+        "total": len(dispositivos),
+        "total_activos": activos,
+    }
+
+    return render(
+        request, "dispositivos/catalogo.html", contexto
+    )
+
 
