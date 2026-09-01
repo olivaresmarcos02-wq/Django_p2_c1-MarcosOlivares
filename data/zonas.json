@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "Planta La Serena",
+        "limite_kwh": 500
+    },
+    {
+        "id": 2,
+        "nombre": "Oficinas Administrativas",
+        "limite_kwh": 150
+    },
+    {
+        "id": 3,
+        "nombre": "Punto Limpio y Reciclaje",
+        "limite_kwh": 300
+    }
+]

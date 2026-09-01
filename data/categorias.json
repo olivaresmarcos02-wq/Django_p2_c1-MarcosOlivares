@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "Iluminación",
+        "descripcion": "Sistemas de luces y focos"
+    },
+    {
+        "id": 2,
+        "nombre": "Climatización",
+        "descripcion": "Aire acondicionado y calefacción"
+    },
+    {
+        "id": 3,
+        "nombre": "Maquinaria",
+        "descripcion": "Equipos operativos e industriales"
+    }
+]
