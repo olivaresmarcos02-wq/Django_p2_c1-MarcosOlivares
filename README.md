@@ -142,18 +142,20 @@ pip install -r requirements.txt
 Dependencias incluidas: Django==6.   django-bootstrap5==26.2, asgiref, sqlparse, tzdata.
 
 # Estructura de datos
-Archivo	                                Claves	                         Registros
-data/zonas.json	         id, nombre, limite_kwh	                            3
-data/categorias.json     id, nombre, descripcion	                        3
-data/dispositivos.json	 id, nombre, consumo_kwh, zona_id, categoria_id	    8
+| Archivo | Claves | Registros |
+|---|---|---|
+| `data/zonas.json` | id, nombre, limite_kwh | 3 |
+| `data/categorias.json` | id, nombre, descripcion | 3 |
+| `data/dispositivos.json` | id, nombre, consumo_kwh, zona_id, categoria_id | 8 |
 
 zona_id y categoria_id referencian identificadores existentes en sus respectivos archivos. La carga se hace mediante dispositivos/services.py (cargar_json).
 
 # Rutas funcionales
-Ruta	            Nombre	                            Descripción
-/	            dispositivos:inicio	                 Página de inicio.
-/zonas/	        dispositivos:catalogo	             Listado de zonas con nombre, límite y cantidad de dispositivos.
-/zonas/<id>/	dispositivos:detalle_zona	         Detalle de una zona: dispositivos, categoría, consumo total y estado.
+| Ruta | Nombre | Descripción |
+|---|---|---|
+| `/` | `dispositivos:inicio` | Página de inicio. |
+| `/zonas/` | `dispositivos:catalogo` | Listado de zonas con nombre, límite y cantidad de dispositivos. |
+| `/zonas/<id>/` | `dispositivos:detalle_zona` | Detalle de una zona: dispositivos, categoría, consumo total y estado. |
 
 # Reglas de negocio
     -Consumo total de una zona = suma de consumo_kwh de sus dispositivos.
@@ -167,13 +169,14 @@ python manage.py check
 python manage.py runserver
 ```
 
-Escenario	                              Resultado observado
-GET /	                                         200
-GET /zonas/	                     200, muestra las 3 zonas
-GET /zonas/1/	                                 200, consumo 390/500 → NORMAL
-GET /zonas/2/	                                 200, consumo 190/150 → ALERTA
-GET /zonas/99/	                                 404 controlado
-python manage.py check	                         "System check identified no issues"
+| Escenario | Resultado observado |
+|---|---|
+| `GET /` | 200 |
+| `GET /zonas/` | 200, muestra las 3 zonas |
+| `GET /zonas/1/` | 200, consumo 390/500 → NORMAL |
+| `GET /zonas/2/` | 200, consumo 190/150 → ALERTA |
+| `GET /zonas/99/` | 404 controlado |
+| `python manage.py check` | "System check identified no issues" |
 
 # Documentación adicional
     -ANALISIS.md: relaciones, multiplicidades, claves de conexión y matriz Criterio de aceptación / Archivo / Prueba.
