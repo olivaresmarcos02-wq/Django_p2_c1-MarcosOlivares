@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Zona - EcoEnergy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="mb-3">
+        <a href="{% url 'dispositivos:catalogo' %}" class="btn btn-secondary btn-sm">&larr; Volver a Zonas</a>
+    </div>
+
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">{{ zona.nombre }}</h4>
+        </div>
+        <div class="card-body">
+            <p class="mb-1"><strong>Límite:</strong> {{ zona.limite_kwh }} kWh</p>
+            <p class="mb-1"><strong>Consumo Total:</strong> {{ zona.consumo_total }} kWh</p>
+            <p class="mb-0">
+                <strong>Estado:</strong> 
+                <span class="badge {{ zona.clase_badge }}">{{ zona.estado }}</span>
+            </p>
+        </div>
+    </div>
+
+    <h4 class="mb-3 fw-bold">Dispositivos de la Zona</h4>
+
+    {% if sin_dispositivos_mensaje %}
+        <div class="alert alert-warning border-warning">
+            {{ sin_dispositivos_mensaje }}
+        </div>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped border-dark">
+                <thead class="table-light border-dark">
+                    <tr>
+                        <th>Dispositivo</th>
+                        <th>Categoría</th>
+                        <th>Consumo (kWh)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in dispositivos %}
+                    <tr>
+                        <td>{{ d.nombre }}</td>
+                        <td>{{ d.categoria.nombre }}</td>
+                        <td>{{ d.consumo_kwh }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,74 +1,44 @@
-<!-- templates/dispositivos/catalogo.html -->
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Zonas de Consumo - EcoEnergy{% endblock %}
+
 {% block content %}
-<div class="container py-4">
-    <div class="mb-4">
-        <h1 class="fw-bold">Zonas de consumo</h1>
-        <p class="text-muted mb-0">Consulta los dispositivos registrados y su consumo energético.</p>
+<div class="container mt-4">
+    <div class="card border-dark shadow-sm">
+        <!-- Replicando el encabezado del boceto, enlazando "Inicio" a tu ruta -->
+        
+        
+        <div class="card-body border-bottom border-dark py-2">
+            <h4 class="mb-0 fw-bold">ZONAS DE CONSUMO</h4>
+        </div>
+
+        <div class="card-body bg-white">
+            {% if zonas %}
+                <div class="row">
+                    {% for zona in zonas %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100 text-center border-secondary">
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <h5 class="text-uppercase fw-bold">{{ zona.nombre }}</h5>
+                                <p class="mb-0">Límite: {{ zona.limite_kwh }} kWh</p>
+                                <p class="mb-3">Dispositivos: {{ zona.cantidad_dispositivos }}</p>
+                                <div>
+                                    <!-- Enlace al detalle con tu app_name -->
+                                    <a href="{% url 'dispositivos:detalle_zona' zona.id %}" class="text-decoration-none">
+                                        [ Ver detalle ]
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-muted">
+                    Estado alternativo: "No hay zonas disponibles".
+                </div>
+            {% endif %}
+        </div>
     </div>
-
-    <div class="row g-4 mb-4">
-        <div class="col-md-6">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-body">
-                    <h6 class="text-muted text-uppercase mb-2">Total de dispositivos</h6>
-                    <h2 class="fw-bold mb-0">{{ total }}</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card shadow-sm border-0 h-100">
-                <div class="card-body">
-                    <h6 class="text-muted text-uppercase mb-2">Dispositivos activos</h6>
-                    <h2 class="fw-bold mb-0">{{ total_activos }}</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% if dispositivos %}
-        <div class="card shadow-sm border-0">
-            <div class="card-body">
-                <h5 class="card-title fw-bold mb-3">Dispositivos registrados</h5>
-
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                                <th>Consumo (kWh)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for dispositivo in dispositivos %}
-                                <tr>
-                                    <td>{{ dispositivo.nombre }}</td>
-                                    <td>
-                                        {% if dispositivo.estado == "Activo" %}
-                                            <span class="badge bg-success">Activo</span>
-                                        {% else %}
-                                            <span class="badge bg-secondary">{{ dispositivo.estado }}</span>
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ dispositivo.consumo_kwh }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <div class="card shadow-sm border-0">
-            <div class="card-body text-center py-5">
-                <h5 class="fw-bold">No hay dispositivos registrados</h5>
-                <p class="text-muted mb-0">Actualmente no existen dispositivos para mostrar en el catálogo.</p>
-            </div>
-        </div>
-    {% endif %}
 </div>
 {% endblock %}
-
-
