@@ -23,7 +23,7 @@ CA-03 a CA-05: Detalle, Consumo y EstadosEl detalle muestra dispositivos, catego
 
 A/C: dispositivos/views.py (detalle_zona_view) / detalle_zona.html
 
-P: Entrar al detalle de una zona (/zona/<id>/) y comprobar el cálculo acumulado en kWh, el cambio de indicador visual y texto descriptivo. 
+P: Entrar al detalle de una zona (/zonas/<id>/) y comprobar el cálculo acumulado en kWh, el cambio de indicador visual y texto descriptivo. 
 
 # 3
 CA-06 y CA-07: Comportamiento Dinámico y Colección VacíaLa aplicación incorpora nuevos registros automáticamente y maneja zonas sin dispositivos de forma operativa.  
@@ -37,7 +37,7 @@ CA-08: Gestión de Excepciones 404Un identificador de zona inexistente responde 
 
 A/C: dispositivos/views.py / 404.html / config/urls.py
 
-P: Navegar deliberadamente a una ruta no registrada (ej. /zona/999/) y comprobar la respuesta HTTP controlada.  
+P: Navegar deliberadamente a una ruta no registrada (ej. /zonas/999/) y comprobar la respuesta HTTP controlada.  
 # 5
 CA-09 a CA-12: Usabilidad y Diseño ResponsiveLa interfaz conserva su estructura, maneja tablas adaptativas con desplazamiento y aplica jerarquía visual coherente con Bootstrap.  
 
