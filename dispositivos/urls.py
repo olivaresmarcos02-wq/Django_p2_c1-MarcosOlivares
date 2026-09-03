@@ -9,6 +9,8 @@ path("", views.inicio, name="inicio"),
 
 path('zonas/', views.catalogo, name='catalogo'),
 path('zonas/<int:zona_id>/', views.detalle_zona_view, name='detalle_zona'),
+path('resumen/', views.resumen_zona, name='resumen_zona'),
+
 
 
 ]

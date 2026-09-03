@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Resumen de consumo por zona - EcoEnergy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="card mb-4 border-dark shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">{{ zonas_totales }}</h4>
+        </div>
+        <div class="card-body">
+            <p class="mb-1"><strong>Cantidad Zonas:</strong></p>
+            <p class="mb-1"><strong>Consumo Total:</strong> {{ zona.consumo }} kWh</p>
+            <p class="mb-0">
+                <strong>Estado:</strong> 
+                <span class="badge {{ zona.clase_badge }}">{{ zona.estado }}</span>
+            </p>
+        </div>
+    </div>
+
+    <h4 class="mb-3 fw-bold">Dispositivos de la Zona</h4>
+
+    {% if sin_dispositivos_mensaje %}
+        <div class="alert alert-warning border-warning">
+            {{ sin_dispositivos_mensaje }}
+        </div>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped border-dark">
+                <thead class="table-light border-dark">
+                    <tr>
+                        <th>Zona</th>
+                        <th>Dispositivos</th>
+                        <th>Consumo</th>
+                        <th>Limite</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for zona in zonas %}
+                    <tr>
+                        <td>{{ zonas.nombre }}</td>
+                        <td></td>
+                        <td>{{ zona.consumo }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
